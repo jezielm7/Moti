@@ -1,13 +1,33 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Feather } from '@expo/vector-icons';
 import { View, Text } from 'react-native';
 
 import { styles } from './styles';
 import { theme } from '../../styles/theme';
 
+import Animated, {
+  useSharedValue,
+  useAnimatedStyle,
+  withTiming,
+} from 'react-native-reanimated';
+
 export function Header() {
+  const opacity = useSharedValue(0);
+
+  const animated = useAnimatedStyle(() => {
+    return {
+      opacity: opacity.value,
+    }
+  })
+
+  useEffect(() => {
+    opacity.value = withTiming(1, {
+      duration: 3000,
+    });
+  }, []);
+
   return (
-    <View style={styles.container}>
+    <Animated.View style={[styles.container, animated]}>
       <Feather
         name="arrow-left"
         color={theme.colors.brown}
@@ -23,6 +43,6 @@ export function Header() {
           Special Sushi
         </Text>
       </View>
-    </View>
+    </Animated.View>
   );
 }
