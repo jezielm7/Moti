@@ -1,15 +1,33 @@
 import React from 'react';
-import { Image } from 'react-native';
+
+import { MotiImage } from 'moti';
+
+import plateImg from '../../assets/plate.png';
 
 import { styles } from './styles';
-import plateImg from '../../assets/plate.png';
 
 export function Plate() {
   return (
-    <Image
-      style={styles.plate}
+    <MotiImage
       source={plateImg}
       resizeMode="contain"
+      style={styles.plate}
+
+      from={{
+        rotate: '100deg',
+        opacity: 0,
+      }}
+      animate={{
+        rotate: '0deg',
+        opacity: 1,
+      }}
+      transition={{
+        type: 'timing',
+        duration: 2000,
+        // loop: true,
+        // repeat: 3,
+        // repeatReverse: false,
+      }}
     />
   );
 }
