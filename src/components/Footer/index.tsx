@@ -30,9 +30,24 @@ export function Footer() {
       </Text>
 
       <View style={styles.footer}>
-        <Text style={styles.price}>
-          $22
-        </Text>
+        <MotiView
+          from={{
+            opacity: 0,
+            rotate: '100deg',
+          }}
+          animate={{
+            opacity: 1,
+            rotate: '0deg',
+          }}
+          transition={{
+            type: 'timing',
+            duration: 1500,
+          }}
+        >
+          <Text style={styles.price}>
+            $22
+          </Text>
+        </MotiView>
 
         <Button />
       </View>
